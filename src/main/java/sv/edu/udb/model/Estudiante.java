@@ -83,6 +83,6 @@ public class Estudiante {
     }
 
     public enum Genero {
-        Masculino, Femenino, Otro
+        Masculino, Femenino
     }
 }

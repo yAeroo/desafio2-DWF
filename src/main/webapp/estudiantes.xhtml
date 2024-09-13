@@ -6,6 +6,9 @@
 
 <h:head>
     <title>Gestión de Estudiantes</title>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <script src="https://cdn.tailwindcss.com"></script>
 </h:head>
 
 <h:body>
@@ -25,7 +28,7 @@
                 <p:calendar id="fechaNacimiento" value="#{estudianteBean.estudiante.fechaNacimiento}" pattern="dd/MM/yyyy" />
 
                 <p:outputLabel for="telefono" value="Teléfono:" />
-                <p:inputText id="telefono" value="#{estudianteBean.estudiante.telefono}" />
+                <p:inputMask id="telefono" value="#{estudianteBean.estudiante.telefono}" mask="(999) 9999-9999"/>
 
                 <p:outputLabel for="genero" value="Género:" />
                 <p:selectOneMenu id="genero" value="#{estudianteBean.estudiante.genero}">
@@ -33,13 +36,13 @@
                     <f:selectItems value="#{estudianteBean.generos}" />
                 </p:selectOneMenu>
 
-                <p:commandButton value="Guardar" action="#{estudianteBean.guardar}" update="formEstudiante :formTabla:tablaEstudiantes" />
+                <p:commandButton value="Guardar" styleClass="rounded-button ui-button-success" action="#{estudianteBean.guardar}" update="formEstudiante :formTabla:tablaEstudiantes" />
             </h:panelGrid>
         </p:panel>
     </h:form>
 
     <h:form id="formTabla">
-        <p:dataTable id="tablaEstudiantes" value="#{estudianteBean.estudiantes}" var="est">
+        <p:dataTable id="tablaEstudiantes" value="#{estudianteBean.estudiantes}" var="est" size="large">
             <p:column headerText="ID">
                 <h:outputText value="#{est.id}" />
             </p:column>
@@ -53,8 +56,8 @@
                 <h:outputText value="#{est.telefono}" />
             </p:column>
             <p:column headerText="Acciones">
-                <p:commandButton value="Editar" action="#{estudianteBean.editar(est)}" update=":formEstudiante" />
-                <p:commandButton value="Eliminar" action="#{estudianteBean.eliminar(est)}" update=":formEstudiante :formTabla:tablaEstudiantes" />
+                <p:commandButton value="Editar" styleClass="rounded-button ui-button-info" style="margin-right:1rem" action="#{estudianteBean.editar(est)}" update=":formEstudiante" />
+                <p:commandButton value="Eliminar" styleClass="rounded-button ui-button-danger" action="#{estudianteBean.eliminar(est)}" update=":formEstudiante :formTabla:tablaEstudiantes" />
             </p:column>
         </p:dataTable>
     </h:form>
