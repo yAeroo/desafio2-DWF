@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Gestión de Estudiantes</title>
+</h:head>
+
+<h:body>
+    <h:form id="formEstudiante">
+        <p:panel header="Registro de Estudiantes">
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="nombre" value="Nombre completo:" />
+                <p:inputText id="nombre" value="#{estudianteBean.estudiante.nombreCompleto}" required="true" />
+
+                <p:outputLabel for="direccion" value="Dirección:" />
+                <p:inputText id="direccion" value="#{estudianteBean.estudiante.direccion}" />
+
+                <p:outputLabel for="email" value="Email:" />
+                <p:inputText id="email" value="#{estudianteBean.estudiante.email}" />
+
+                <p:outputLabel for="fechaNacimiento" value="Fecha de nacimiento:" />
+                <p:calendar id="fechaNacimiento" value="#{estudianteBean.estudiante.fechaNacimiento}" pattern="dd/MM/yyyy" />
+
+                <p:outputLabel for="telefono" value="Teléfono:" />
+                <p:inputText id="telefono" value="#{estudianteBean.estudiante.telefono}" />
+
+                <p:outputLabel for="genero" value="Género:" />
+                <p:selectOneMenu id="genero" value="#{estudianteBean.estudiante.genero}">
+                    <f:selectItem itemLabel="Seleccione" itemValue="" />
+                    <f:selectItems value="#{estudianteBean.generos}" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="Guardar" action="#{estudianteBean.guardar}" update="formEstudiante :formTabla:tablaEstudiantes" />
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+
+    <h:form id="formTabla">
+        <p:dataTable id="tablaEstudiantes" value="#{estudianteBean.estudiantes}" var="est">
+            <p:column headerText="ID">
+                <h:outputText value="#{est.id}" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{est.nombreCompleto}" />
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{est.email}" />
+            </p:column>
+            <p:column headerText="Teléfono">
+                <h:outputText value="#{est.telefono}" />
+            </p:column>
+            <p:column headerText="Acciones">
+                <p:commandButton value="Editar" action="#{estudianteBean.editar(est)}" update=":formEstudiante" />
+                <p:commandButton value="Eliminar" action="#{estudianteBean.eliminar(est)}" update=":formEstudiante :formTabla:tablaEstudiantes" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
