@@ -74,11 +74,22 @@
                 <p:column headerText="Nombre">
                     <h:outputText value="#{est.nombreCompleto}" />
                 </p:column>
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{est.direccion}" />
+                </p:column>
                 <p:column headerText="Email">
                     <h:outputText value="#{est.email}" />
                 </p:column>
+                <p:column headerText="Fecha de Nacimiento">
+                    <h:outputText value="#{est.fechaNacimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
                 <p:column headerText="Teléfono">
                     <h:outputText value="#{est.telefono}" />
+                </p:column>
+                <p:column headerText="Género">
+                    <h:outputText value="#{est.genero}" />
                 </p:column>
                 <p:column headerText="Acciones">
                     <p:commandButton value="Editar" styleClass="rounded-button ui-button-info" style="margin-right:1rem" action="#{estudianteBean.editar(est)}" update=":formEstudiante" />
